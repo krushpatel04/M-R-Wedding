@@ -1,16 +1,18 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Style_Script, Oswald } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "./components/SmoothScroll";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const styleScript = Style_Script({
+  variable: "--font-heading",
   subsets: ["latin"],
+  weight: "400",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const oswald = Oswald({
+  variable: "--font-body",
   subsets: ["latin"],
+  weight: ["300", "400", "500"],
 });
 
 export const metadata: Metadata = {
@@ -32,9 +34,9 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${styleScript.variable} ${oswald.variable} antialiased`}>
         <SmoothScroll>
-<div className="grain" aria-hidden="true" />
+          <div className="grain" aria-hidden="true" />
           {children}
         </SmoothScroll>
       </body>
