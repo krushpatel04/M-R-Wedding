@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Krush Patel",
-  description: "Software developer and CSE student at The Ohio State University.",
+  title: "M&R Wedding",
+  description: "Rushil and Monali's Wedding — June 27th, 2026.",
 };
 
 export default function RootLayout({
