@@ -69,12 +69,7 @@ export default function Portfolio() {
             M&amp;R
           </div>
 
-          <p
-            style={{ color: "var(--body)" }}
-            className="text-base leading-relaxed mb-3"
-          >
-            Welcome to Rushil and Monali&apos;s Wedding.
-          </p>
+
           <p
             style={{ color: "var(--accent)" }}
             className="text-sm font-semibold tracking-wide"
