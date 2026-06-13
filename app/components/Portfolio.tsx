@@ -53,22 +53,6 @@ export default function Portfolio() {
             Rushil and Monali
           </h2>
 
-          <div
-            style={{
-              color: "var(--accent)",
-              border: "2px solid var(--accent)",
-              display: "inline-flex",
-              alignItems: "center",
-              justifyContent: "center",
-              width: 160,
-              height: 160,
-              borderRadius: "50%",
-            }}
-            className="text-5xl font-extrabold tracking-tight mb-12"
-          >
-            M&amp;R
-          </div>
-
 
           <p
             style={{ color: "var(--accent)" }}
