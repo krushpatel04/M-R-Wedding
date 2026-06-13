@@ -111,6 +111,13 @@ export default function Portfolio() {
         </p>
       </Section>
 
+      {/* ── Kanya Aagman ─────────────────────────────────────────────────── */}
+      <Section subtitle="The Bride's Entry" title="Kanya Aagman">
+        <p style={{ color: "var(--body)" }} className="text-sm leading-relaxed max-w-lg">
+          Mona walks down the aisle to the mandap, where her forever awaits.
+        </p>
+      </Section>
+
     </div>
   );
 }
