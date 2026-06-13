@@ -42,10 +42,16 @@ export default function Portfolio() {
         <div className="max-w-2xl w-full text-center">
           <h1
             style={{ color: "var(--fg)" }}
-            className="text-5xl sm:text-7xl font-extrabold tracking-tight leading-tight mb-12"
+            className="text-5xl sm:text-7xl font-extrabold tracking-tight leading-tight mb-4"
           >
-            Rushil and Monali Wedding
+            Welcome to the Wedding of
           </h1>
+          <h2
+            style={{ color: "var(--fg)" }}
+            className="text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight mb-12"
+          >
+            Rushil and Monali
+          </h2>
 
           <div
             style={{
