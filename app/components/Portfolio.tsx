@@ -118,6 +118,18 @@ export default function Portfolio() {
         </p>
       </Section>
 
+      {/* ── Kanyadaan & Hast Melap ───────────────────────────────────────── */}
+      <Section subtitle="Union of the Couple" title="Kanyadaan & Hast Melap">
+        <p style={{ color: "var(--body)" }} className="text-sm leading-relaxed max-w-lg">
+          The bride represents a form of the goddess Laxmi, and the groom that
+          of Lord Narayana. Mona&apos;s parents are assisting in the union of
+          the two &apos;Gods&apos; by placing their daughter&apos;s hand into
+          Rushil&apos;s, while everyone bears witness. Rushil&apos;s scarf is
+          then tied to Mona&apos;s veil signifying the forever union of their
+          souls.
+        </p>
+      </Section>
+
     </div>
   );
 }
