@@ -44,7 +44,7 @@ export default function Portfolio() {
             style={{ color: "var(--fg)" }}
             className="text-5xl sm:text-7xl font-extrabold tracking-tight leading-tight mb-12"
           >
-            Rushil and Mona Wedding
+            Rushil and Monali Wedding
           </h1>
 
           <div
@@ -67,7 +67,7 @@ export default function Portfolio() {
             style={{ color: "var(--body)" }}
             className="text-base leading-relaxed mb-3"
           >
-            Welcome to Rushil and Mona&apos;s Wedding.
+            Welcome to Rushil and Monali&apos;s Wedding.
           </p>
           <p
             style={{ color: "var(--accent)" }}
@@ -83,7 +83,7 @@ export default function Portfolio() {
         <p style={{ color: "var(--body)" }} className="text-sm leading-relaxed max-w-lg">
           Rushil and his wedding brigade will dance their way to the wedding,
           showing off their best moves. The groom&apos;s family will be
-          welcomed by Mona&apos;s mother.
+          welcomed by Monali&apos;s mother.
         </p>
       </Section>
 
@@ -99,10 +99,10 @@ export default function Portfolio() {
       {/* ── Var Puja ─────────────────────────────────────────────────────── */}
       <Section subtitle="The Honoring of the Groom" title="Var Puja">
         <p style={{ color: "var(--body)" }} className="text-sm leading-relaxed max-w-lg mb-4">
-          Rushil is welcomed to the mandap by Mona&apos;s parents.
+          Rushil is welcomed to the mandap by Monali&apos;s parents.
         </p>
         <p style={{ color: "var(--body)" }} className="text-sm leading-relaxed max-w-lg mb-6">
-          Mona&apos;s bridesmaids will try to steal Rushil&apos;s shoes once
+          Monali&apos;s bridesmaids will try to steal Rushil&apos;s shoes once
           he is seated in the mandap. His shoes will be held as ransom, and
           Rushil will have to dig deep in his pockets to get them back!
         </p>
@@ -114,7 +114,7 @@ export default function Portfolio() {
       {/* ── Kanya Aagman ─────────────────────────────────────────────────── */}
       <Section subtitle="The Bride's Entry" title="Kanya Aagman">
         <p style={{ color: "var(--body)" }} className="text-sm leading-relaxed max-w-lg">
-          Mona walks down the aisle to the mandap, where her forever awaits.
+          Monali walks down the aisle to the mandap, where her forever awaits.
         </p>
       </Section>
 
@@ -122,11 +122,88 @@ export default function Portfolio() {
       <Section subtitle="Union of the Couple" title="Kanyadaan & Hast Melap">
         <p style={{ color: "var(--body)" }} className="text-sm leading-relaxed max-w-lg">
           The bride represents a form of the goddess Laxmi, and the groom that
-          of Lord Narayana. Mona&apos;s parents are assisting in the union of
+          of Lord Narayana. Monali&apos;s parents are assisting in the union of
           the two &apos;Gods&apos; by placing their daughter&apos;s hand into
           Rushil&apos;s, while everyone bears witness. Rushil&apos;s scarf is
-          then tied to Mona&apos;s veil signifying the forever union of their
+          then tied to Monali&apos;s veil signifying the forever union of their
           souls.
+        </p>
+      </Section>
+
+      {/* ── Agni Puja & Mangal Pheras ────────────────────────────────────── */}
+      <Section subtitle="Circling the Sacred Fire" title="Agni Puja & Mangal Pheras">
+        <p style={{ color: "var(--body)" }} className="text-sm leading-relaxed max-w-lg">
+          Monali and Rushil walk around the fire (agni) four times, symbolizing
+          the core aspirations of married life — Dharma (Duty), Artha
+          (Prosperity), Kama (Family) and Moksha (Salvation). As they are
+          making their last round around the fire, Monali and Rushil rush towards
+          their seats. It is said that the first to sit down will be the ruler
+          of the household.
+        </p>
+      </Section>
+
+      {/* ── Mangalsutra & Sindoor ────────────────────────────────────────── */}
+      <Section subtitle="Symbols of Marriage" title="Mangalsutra & Sindoor">
+        <p style={{ color: "var(--body)" }} className="text-sm leading-relaxed max-w-lg mb-4">
+          Rushil puts a mangalsutra (a sacred necklace) around Monali&apos;s
+          neck, and sindoor (red vermillion powder) on her hair parting.
+        </p>
+        <p style={{ color: "var(--body)" }} className="text-sm leading-relaxed max-w-lg">
+          They exchange rings which are a symbol of their love, everlasting
+          commitment, and respect towards each other.
+        </p>
+      </Section>
+
+      {/* ── Kansar ───────────────────────────────────────────────────────── */}
+      <Section subtitle="The Couple's First Meal Together" title="Kansar">
+        <p style={{ color: "var(--body)" }} className="text-sm leading-relaxed max-w-lg">
+          Monali and Rushil feed each other sweets, symbolizing they will share
+          everything they have in life.
+        </p>
+      </Section>
+
+      {/* ── Akhand Saubhagyavati ─────────────────────────────────────────── */}
+      <Section subtitle="Blessings from Married Women" title="Akhand Saubhagyavati">
+        <p style={{ color: "var(--body)" }} className="text-sm leading-relaxed max-w-lg">
+          Married women from Monali&apos;s family chant good wishes to her and
+          bless her with a married life filled with happiness and love.
+        </p>
+      </Section>
+
+      {/* ── Saptapadi ────────────────────────────────────────────────────── */}
+      <Section subtitle="The Seven Vows of Marital Bliss" title="Saptapadi">
+        <p style={{ color: "var(--body)" }} className="text-sm leading-relaxed max-w-lg mb-6">
+          Monali and Rushil take seven sacred steps and recite the following
+          vows to one another:
+        </p>
+        <ol className="space-y-3 max-w-lg">
+          {[
+            "We will share the responsibilities of married life.",
+            "We will fill our hearts with strength and courage to accomplish all the needs of our life.",
+            "We will prosper and share our worldly goods and work for the prosperity of our family.",
+            "We will cherish each other in sickness and in health, in happiness and in sorrow.",
+            "We will raise a strong and virtuous family.",
+            "We will fill our hearts with great joy, peace, happiness, and spiritual values.",
+            "We will remain lifelong partners in matrimony.",
+          ].map((vow, i) => (
+            <li key={i} style={{ color: "var(--body)" }} className="text-sm leading-relaxed flex gap-3">
+              <span style={{ color: "var(--accent)" }} className="font-semibold shrink-0">
+                {i + 1}.
+              </span>
+              {vow}
+            </li>
+          ))}
+        </ol>
+      </Section>
+
+      {/* ── Aashirvaad & Vidai ───────────────────────────────────────────── */}
+      <Section subtitle="Blessings to the Couple & the Bride's Farewell" title="Aashirvaad & Vidai">
+        <p style={{ color: "var(--body)" }} className="text-sm leading-relaxed max-w-lg">
+          The Priest declares Rushil and Monali as husband and wife. He asks
+          family and friends to join him in showering the couple with blessings
+          and good wishes. During the final ritual of the ceremony,
+          Monali&apos;s family showers her with well wishes in a farewell
+          filled with joy.
         </p>
       </Section>
 
