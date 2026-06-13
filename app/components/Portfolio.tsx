@@ -78,5 +78,33 @@ export default function Portfolio() {
           </p>
         </div>
       </section>
+      {/* ── Ganesh Puja ──────────────────────────────────────────────────── */}
+      <section
+        style={{ background: "var(--bg)", borderTop: "1px solid var(--border)" }}
+        className="w-full px-6 py-20"
+      >
+        <div className="max-w-2xl mx-auto">
+          <p
+            style={{ color: "var(--muted)" }}
+            className="text-xs font-mono tracking-widest uppercase mb-3"
+          >
+            Prayers to Lord Ganesha
+          </p>
+          <h2
+            style={{ color: "var(--fg)" }}
+            className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-6"
+          >
+            Ganesh Puja
+          </h2>
+          <p
+            style={{ color: "var(--body)" }}
+            className="text-sm leading-relaxed max-w-lg"
+          >
+            The wedding ceremony begins with a prayer in honor of Lord Ganesha,
+            the remover of all obstacles. Lord Ganesha is always worshiped
+            before the start of a new chapter in one&apos;s life.
+          </p>
+        </div>
+      </section>
   );
 }
