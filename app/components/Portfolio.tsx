@@ -252,9 +252,9 @@ function TimelineEvent({ event, index }: { event: WeddingEvent; index: number })
       </div>
 
       {/* Mobile layout */}
-      <div className="flex md:hidden items-start gap-5 py-8 px-4">
-        <div className="flex flex-col items-center shrink-0 mt-1">{dot}</div>
-        <div ref={mobileRef} className="card-animate flex-1" data-side="right">
+      <div className="md:hidden relative py-8 pr-4" style={{ paddingLeft: "48px" }}>
+        <div className="absolute" style={{ left: "14px", top: "2rem" }}>{dot}</div>
+        <div ref={mobileRef} className="card-animate" data-side="right">
           <EventContent event={event} />
         </div>
       </div>
@@ -302,7 +302,7 @@ export default function Portfolio() {
         {/* Vertical left line — mobile only */}
         <div
           className="md:hidden absolute top-0 bottom-0"
-          style={{ left: "28px", width: "1px", background: "var(--color-accent)" }}
+          style={{ left: "20px", width: "1px", background: "var(--color-accent)" }}
         />
 
         {events.map((event, i) => (
