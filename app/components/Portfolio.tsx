@@ -269,7 +269,7 @@ export default function Portfolio() {
     <div style={{ background: "var(--color-background)" }}>
 
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
-      <div className="min-h-screen flex flex-col items-center justify-center px-6 text-center">
+      <div className="py-24 md:min-h-screen flex flex-col items-center justify-center px-6 text-center">
         <h1
           className="text-5xl sm:text-7xl font-bold leading-tight mb-4"
           style={{ color: "var(--color-header)" }}
