@@ -1,43 +1,51 @@
 @import "tailwindcss";
 
-/* ── Theme ──────────────────────────────────────────────────────────────── */
+/* ── Color system ───────────────────────────────────────────────────────── */
 :root {
-  --bg:     #f0eee9;
-  --fg:     #9f2436;
-  --body:   rgba(159, 36, 54, 0.80);
-  --muted:  rgba(159, 36, 54, 0.50);
-  --accent: #9f2436;
-  --border: rgba(159, 36, 54, 0.20);
-  --card:   #e8e5df;
+  --color-background: #f0eee9;
+  --color-header:     #9f2436;
+  --color-secondary:  #C9A84C;
+  --color-accent:     #D4890A;
 }
 
+/* ── Base ───────────────────────────────────────────────────────────────── */
 html {
-  scroll-padding-top: 4.5rem;
+  scroll-padding-top: 2rem;
 }
 
 body {
-  background-color: var(--bg);
-  color: var(--fg);
+  background-color: var(--color-background);
+  color: var(--color-secondary);
   font-family: var(--font-body), sans-serif;
   overflow-x: hidden;
 }
 
 h1, h2, h3 {
   font-family: var(--font-heading), cursive;
+  color: var(--color-header);
 }
 
-body.theme-ready {
-  transition: background-color 0.2s ease, color 0.2s ease;
+/* ── Timeline card scroll animations ───────────────────────────────────── */
+.card-animate {
+  opacity: 0;
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
+.card-animate[data-side="left"]  { transform: translateX(-80px); }
+.card-animate[data-side="right"] { transform: translateX(80px);  }
 
-/* Static grain overlay */
+.card-animate.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ── Grain overlay ──────────────────────────────────────────────────────── */
 .grain {
   position: fixed;
   inset: 0;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 200px;
   pointer-events: none;
-  z-index: 4;
-  opacity: 0.032;
+  z-index: 100;
+  opacity: 0.025;
 }

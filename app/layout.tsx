@@ -26,14 +26,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `try{const t=localStorage.getItem('theme');const prefersLight=window.matchMedia('(prefers-color-scheme: light)').matches;if(t==='light'||(t===null&&prefersLight)){document.documentElement.setAttribute('data-theme','light')}}catch(e){}requestAnimationFrame(()=>document.body.classList.add('theme-ready'));`,
-          }}
-        />
-      </head>
+    <html lang="en">
+      <head />
       <body className={`${styleScript.variable} ${oswald.variable} antialiased`}>
         <SmoothScroll>
           <div className="grain" aria-hidden="true" />
