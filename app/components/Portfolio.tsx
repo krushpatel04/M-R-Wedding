@@ -291,7 +291,7 @@ export default function Portfolio() {
       </div>
 
       {/* ── Timeline ─────────────────────────────────────────────────────── */}
-      <div className="relative max-w-4xl mx-auto px-4 pb-32">
+      <div className="relative max-w-4xl mx-auto md:px-4 pb-32">
 
         {/* Vertical center line — desktop only */}
         <div
