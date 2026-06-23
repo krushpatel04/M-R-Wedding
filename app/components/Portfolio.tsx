@@ -1,60 +1,51 @@
 "use client";
 
+const HEADER = "#9f2436";
+const ACCENT = "#D4890A";
+const SECONDARY = "#C9A84C";
+const BG = "#f0eee9";
+
 /* ── Seating data ───────────────────────────────────────────────────────── */
 
 const tables = [
-  {
-    number: 1,
-    guests: [],
-  },
-  {
-    number: 2,
-    guests: [],
-  },
-  {
-    number: 3,
-    guests: [],
-  },
+  { number: 1, guests: [] },
+  { number: 2, guests: [] },
+  { number: 3, guests: [] },
 ];
 
 /* ── Table card ─────────────────────────────────────────────────────────── */
 
 function TableCard({ table }: { table: (typeof tables)[0] }) {
   return (
-    <div className="flex flex-col items-center w-full max-w-xs mx-auto py-8">
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", width: "100%", maxWidth: 320, margin: "0 auto", padding: "2rem 1rem" }}>
+
       {/* Circle */}
-      <div
-        className="flex items-center justify-center rounded-full mb-6"
-        style={{
-          width: 140,
-          height: 140,
-          border: "2px solid var(--color-accent)",
-          background: "var(--color-background)",
-        }}
-      >
-        <span
-          style={{
-            color: "var(--color-header)",
-            fontFamily: "var(--font-heading)",
-            fontSize: "1.5rem",
-          }}
-        >
+      <div style={{
+        width: 140,
+        height: 140,
+        borderRadius: "50%",
+        border: `2px solid ${ACCENT}`,
+        background: BG,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        marginBottom: "1.25rem",
+        flexShrink: 0,
+      }}>
+        <span style={{ color: HEADER, fontSize: "1.25rem", fontWeight: 700 }}>
           Table {table.number}
         </span>
       </div>
 
       {/* Guest list */}
-      <ul className="w-full text-center space-y-2">
+      <ul style={{ listStyle: "none", padding: 0, margin: 0, width: "100%", textAlign: "center" }}>
         {table.guests.map((name, i) => (
-          <li
-            key={i}
-            className="text-sm"
-            style={{ color: "var(--color-secondary)" }}
-          >
+          <li key={i} style={{ color: SECONDARY, fontSize: "0.9rem", padding: "0.2rem 0" }}>
             {name}
           </li>
         ))}
       </ul>
+
     </div>
   );
 }
@@ -63,49 +54,37 @@ function TableCard({ table }: { table: (typeof tables)[0] }) {
 
 export default function Portfolio() {
   return (
-    <div style={{ background: "var(--color-background)", minHeight: "100vh" }}>
+    <div style={{ background: BG, minHeight: "100vh" }}>
 
-      {/* ── Hero ─────────────────────────────────────────────────────────── */}
-      <div className="py-16 flex flex-col items-center justify-center px-6 text-center">
-        <h1
-          className="text-4xl sm:text-6xl font-bold leading-tight mb-4"
-          style={{ color: "var(--color-header)" }}
-        >
+      {/* Hero */}
+      <div style={{ textAlign: "center", padding: "4rem 1.5rem 2rem" }}>
+        <h1 style={{ color: HEADER, fontSize: "clamp(1.8rem, 6vw, 3.5rem)", fontWeight: 700, lineHeight: 1.2, marginBottom: "0.5rem" }}>
           Welcome to the Reception of
         </h1>
-        <h2
-          className="text-3xl sm:text-5xl font-bold leading-tight mb-6"
-          style={{ color: "var(--color-header)" }}
-        >
+        <h2 style={{ color: HEADER, fontSize: "clamp(1.5rem, 5vw, 3rem)", fontWeight: 700, lineHeight: 1.2, marginBottom: "1.5rem" }}>
           Mona and Rushil
         </h2>
-        <p
-          className="text-sm tracking-widest uppercase"
-          style={{ color: "var(--color-accent)" }}
-        >
+        <p style={{ color: ACCENT, fontSize: "0.75rem", letterSpacing: "0.15em", textTransform: "uppercase" }}>
           June 27th, 2026
         </p>
       </div>
 
-      {/* ── Seating chart ────────────────────────────────────────────────── */}
-      <div
-        className="px-6 pb-24"
-        style={{ borderTop: "1px solid var(--color-accent)" }}
-      >
-        <h3
-          className="text-center text-lg tracking-widest uppercase mt-10 mb-6"
-          style={{ color: "var(--color-accent)" }}
-        >
-          Seating Chart
-        </h3>
+      {/* Divider */}
+      <div style={{ borderTop: `1px solid ${ACCENT}`, margin: "0 1.5rem" }} />
 
-        <div className="flex flex-col items-center divide-y"
-          style={{ borderColor: "rgba(159,36,54,0.1)" }}
-        >
-          {tables.map((table) => (
-            <TableCard key={table.number} table={table} />
-          ))}
-        </div>
+      {/* Seating label */}
+      <p style={{ color: ACCENT, fontSize: "0.75rem", letterSpacing: "0.15em", textTransform: "uppercase", textAlign: "center", margin: "2rem 0 0" }}>
+        Seating Chart
+      </p>
+
+      {/* Tables */}
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingBottom: "5rem" }}>
+        {tables.map((table, i) => (
+          <div key={table.number} style={{ width: "100%" }}>
+            {i > 0 && <div style={{ borderTop: `1px solid rgba(212,137,10,0.2)`, margin: "0 2rem" }} />}
+            <TableCard table={table} />
+          </div>
+        ))}
       </div>
 
     </div>
