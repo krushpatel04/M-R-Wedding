@@ -18,32 +18,32 @@ function TableCard({ table }: { table: (typeof tables)[0] }) {
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", width: "100%", maxWidth: 320, margin: "0 auto", padding: "2rem 1rem" }}>
 
-      {/* Circle */}
+      {/* Circle with names inside */}
       <div style={{
-        width: 260,
-        height: 260,
+        width: 300,
+        height: 300,
         borderRadius: "50%",
         border: `2px solid ${ACCENT}`,
         background: BG,
         display: "flex",
+        flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        marginBottom: "1.25rem",
         flexShrink: 0,
+        overflow: "hidden",
+        padding: "30px",
       }}>
-        <span style={{ color: HEADER, fontSize: "1.6rem", fontWeight: 700 }}>
+        <span style={{ color: HEADER, fontSize: "1.1rem", fontWeight: 700, marginBottom: "0.4rem" }}>
           Table {table.number}
         </span>
+        <ul style={{ listStyle: "none", padding: 0, margin: 0, textAlign: "center" }}>
+          {table.guests.map((name, i) => (
+            <li key={i} style={{ color: SECONDARY, fontSize: "0.7rem", lineHeight: 1.5 }}>
+              {name}
+            </li>
+          ))}
+        </ul>
       </div>
-
-      {/* Guest list */}
-      <ul style={{ listStyle: "none", padding: 0, margin: 0, width: "100%", textAlign: "center" }}>
-        {table.guests.map((name, i) => (
-          <li key={i} style={{ color: SECONDARY, fontSize: "0.9rem", padding: "0.2rem 0" }}>
-            {name}
-          </li>
-        ))}
-      </ul>
 
     </div>
   );
