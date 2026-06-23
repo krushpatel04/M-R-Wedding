@@ -21,8 +21,8 @@ function TableCard({ table }: { table: (typeof tables)[0] }) {
 
       {/* Circle */}
       <div style={{
-        width: 140,
-        height: 140,
+        width: 260,
+        height: 260,
         borderRadius: "50%",
         border: `2px solid ${ACCENT}`,
         background: BG,
@@ -32,7 +32,7 @@ function TableCard({ table }: { table: (typeof tables)[0] }) {
         marginBottom: "1.25rem",
         flexShrink: 0,
       }}>
-        <span style={{ color: HEADER, fontSize: "1.25rem", fontWeight: 700 }}>
+        <span style={{ color: HEADER, fontSize: "1.6rem", fontWeight: 700 }}>
           Table {table.number}
         </span>
       </div>
