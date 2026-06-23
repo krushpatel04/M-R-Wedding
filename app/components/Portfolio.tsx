@@ -28,7 +28,7 @@ const events: WeddingEvent[] = [
   {
     title: "Ganesh Puja",
     subtitle: "Prayers to Lord Ganesha",
-    image: "/Ganesh Puja.jpeg",
+    image: "/GaneshPuja.jpeg",
     content: (
       <p>
         The wedding ceremony begins with a prayer in honor of Lord Ganesha, the
@@ -40,7 +40,7 @@ const events: WeddingEvent[] = [
   {
     title: "Var Puja",
     subtitle: "The Honoring of the Groom",
-    image: "/Var Puja.jpeg",
+    image: "/VarPuja.jpeg",
     content: (
       <>
         <p className="mb-3">
@@ -83,7 +83,7 @@ const events: WeddingEvent[] = [
   {
     title: "Agni Puja & Mangal Pheras",
     subtitle: "Circling the Sacred Fire",
-    image: "/Agni Puja.jpeg",
+    image: "/AgniPuja.jpeg",
     content: (
       <p>
         Monali and Rushil walk around the fire (agni) four times, symbolizing
@@ -126,7 +126,7 @@ const events: WeddingEvent[] = [
   {
     title: "Akhand Saubhagyavati",
     subtitle: "Blessings from Married Women",
-    image: "/Akhand Saubhagyavati.jpeg",
+    image: "/AkhandSaubhagyavati.jpeg",
     content: (
       <p>
         Married women from Monali&apos;s family chant good wishes to her and
