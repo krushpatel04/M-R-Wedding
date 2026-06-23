@@ -274,13 +274,13 @@ export default function Portfolio() {
           className="text-5xl sm:text-7xl font-bold leading-tight mb-4"
           style={{ color: "var(--color-header)" }}
         >
-          Welcome to the Wedding of
+          Welcome to the Reception of
         </h1>
         <h2
           className="text-4xl sm:text-6xl font-bold leading-tight mb-6"
           style={{ color: "var(--color-header)" }}
         >
-          Rushil and Monali
+          Mona and Rushil
         </h2>
         <p
           className="text-sm tracking-widest uppercase"
