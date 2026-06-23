@@ -7,11 +7,10 @@ const BG = "#f0eee9";
 
 /* ── Seating data ───────────────────────────────────────────────────────── */
 
-const tables = [
-  { number: 1, guests: [] },
-  { number: 2, guests: [] },
-  { number: 3, guests: [] },
-];
+const tables = Array.from({ length: 36 }, (_, i) => ({
+  number: i + 1,
+  guests: Array.from({ length: 10 }, (_, j) => `Name ${j + 1}`),
+}));
 
 /* ── Table card ─────────────────────────────────────────────────────────── */
 
