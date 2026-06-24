@@ -24,7 +24,12 @@ export default function Portfolio() {
       {/* Divider */}
       <div style={{ borderTop: `1px solid ${ACCENT}`, margin: "0 1.5rem" }} />
 
-      {/* Seating chart PDF goes here */}
+      {/* Seating chart PDF */}
+      <iframe
+        src="/M-R-Wedding/MR%20Seating%20Chart.pdf"
+        style={{ display: "block", width: "100%", height: "100vh", border: "none" }}
+        title="Seating Chart"
+      />
 
     </div>
   );
