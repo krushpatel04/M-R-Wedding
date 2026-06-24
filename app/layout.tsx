@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import { Style_Script, Oswald } from "next/font/google";
+import { Style_Script } from "next/font/google";
 import "./globals.css";
-import SmoothScroll from "./components/SmoothScroll";
 
 const styleScript = Style_Script({
   variable: "--font-heading",
@@ -9,15 +8,9 @@ const styleScript = Style_Script({
   weight: "400",
 });
 
-const oswald = Oswald({
-  variable: "--font-body",
-  subsets: ["latin"],
-  weight: ["300", "400", "500"],
-});
-
 export const metadata: Metadata = {
-  title: "M&R Wedding",
-  description: "Rushil and Monali's Wedding — June 27th, 2026.",
+  title: "M&R Reception",
+  description: "Rushil and Monali's Reception — June 27th, 2026.",
 };
 
 export default function RootLayout({
@@ -28,11 +21,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head />
-      <body className={`${styleScript.variable} ${oswald.variable} antialiased`}>
-        <SmoothScroll>
-          <div className="grain" aria-hidden="true" />
-          {children}
-        </SmoothScroll>
+      <body className={`${styleScript.variable} antialiased`}>
+        {children}
       </body>
     </html>
   );
