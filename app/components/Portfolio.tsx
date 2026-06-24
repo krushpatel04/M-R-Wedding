@@ -7,6 +7,7 @@ import { useEffect, useRef } from "react";
 type WeddingEvent = {
   title: string;
   subtitle: string;
+  image: string | null;
   content: React.ReactNode;
 };
 
@@ -14,6 +15,7 @@ const events: WeddingEvent[] = [
   {
     title: "Baraat & Swaagat",
     subtitle: "The Groom's Procession",
+    image: "/Baraat.jpeg",
     content: (
       <p>
         Rushil and his wedding brigade will dance their way to the wedding,
@@ -25,6 +27,7 @@ const events: WeddingEvent[] = [
   {
     title: "Ganesh Puja",
     subtitle: "Prayers to Lord Ganesha",
+    image: "/GaneshPuja.jpeg",
     content: (
       <p>
         The wedding ceremony begins with a prayer in honor of Lord Ganesha, the
@@ -36,6 +39,7 @@ const events: WeddingEvent[] = [
   {
     title: "Var Puja",
     subtitle: "The Honoring of the Groom",
+    image: "/VarPuja.jpeg",
     content: (
       <>
         <p className="mb-3">
@@ -55,6 +59,7 @@ const events: WeddingEvent[] = [
   {
     title: "Kanya Aagman",
     subtitle: "The Bride's Entry",
+    image: "/Kanya.jpeg",
     content: (
       <p>Monali walks down the aisle to the mandap, where her forever awaits.</p>
     ),
@@ -62,6 +67,7 @@ const events: WeddingEvent[] = [
   {
     title: "Kanyadaan & Hast Melap",
     subtitle: "Union of the Couple",
+    image: "/Kanyadaan.jpeg",
     content: (
       <p>
         The bride represents a form of the goddess Laxmi, and the groom that of
@@ -76,6 +82,7 @@ const events: WeddingEvent[] = [
   {
     title: "Agni Puja & Mangal Pheras",
     subtitle: "Circling the Sacred Fire",
+    image: "/AgniPuja.jpeg",
     content: (
       <p>
         Monali and Rushil walk around the fire (agni) four times, symbolizing
@@ -90,6 +97,7 @@ const events: WeddingEvent[] = [
   {
     title: "Mangalsutra & Sindoor",
     subtitle: "Symbols of Marriage",
+    image: "/Sindoor.jpeg",
     content: (
       <>
         <p className="mb-3">
@@ -106,6 +114,7 @@ const events: WeddingEvent[] = [
   {
     title: "Kansar",
     subtitle: "The Couple's First Meal Together",
+    image: "/Kansar.jpeg",
     content: (
       <p>
         Monali and Rushil feed each other sweets, symbolizing they will share
@@ -116,6 +125,7 @@ const events: WeddingEvent[] = [
   {
     title: "Akhand Saubhagyavati",
     subtitle: "Blessings from Married Women",
+    image: "/AkhandSaubhagyavati.jpeg",
     content: (
       <p>
         Married women from Monali&apos;s family chant good wishes to her and
@@ -126,6 +136,7 @@ const events: WeddingEvent[] = [
   {
     title: "Saptapadi",
     subtitle: "The Seven Vows of Marital Bliss",
+    image: null,
     content: (
       <>
         <p className="mb-4">
@@ -156,6 +167,7 @@ const events: WeddingEvent[] = [
   {
     title: "Aashirvaad & Vidai",
     subtitle: "Blessings to the Couple & the Bride's Farewell",
+    image: "/Vidai.jpeg",
     content: (
       <p>
         The Priest declares Rushil and Monali as husband and wife. He asks
@@ -170,9 +182,9 @@ const events: WeddingEvent[] = [
 
 /* ── Event card content ─────────────────────────────────────────────────── */
 
-function EventContent({ event }: { event: WeddingEvent }) {
+function EventContent({ event, center = false }: { event: WeddingEvent; center?: boolean }) {
   return (
-    <div>
+    <div style={{ textAlign: center ? "center" : "inherit" }}>
       <p
         className="text-xs tracking-widest uppercase mb-2"
         style={{ color: "var(--color-accent)", fontFamily: "var(--font-body)" }}
@@ -188,6 +200,58 @@ function EventContent({ event }: { event: WeddingEvent }) {
       <div className="text-sm leading-relaxed" style={{ color: "var(--color-secondary)" }}>
         {event.content}
       </div>
+    </div>
+  );
+}
+
+/* ── Timeline node (image or dot) ───────────────────────────────────────── */
+
+function TimelineNode({ event, size }: { event: WeddingEvent; size: number }) {
+  if (event.image) {
+    return (
+      <div
+        style={{
+          position: "relative",
+          zIndex: 1,
+          background: "var(--color-background)",
+          padding: "10px",
+          flexShrink: 0,
+        }}
+      >
+        <img
+          src={`/M-R-Wedding${event.image}`}
+          alt={event.title}
+          width={size}
+          height={size}
+          style={{ objectFit: "contain", display: "block" }}
+        />
+      </div>
+    );
+  }
+  return (
+    <div
+      style={{
+        position: "relative",
+        zIndex: 1,
+        background: "var(--color-background)",
+        padding: "10px",
+        flexShrink: 0,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        width: size + 20,
+        height: size + 20,
+      }}
+    >
+      <div
+        style={{
+          width: 12,
+          height: 12,
+          borderRadius: "50%",
+          background: "var(--color-accent)",
+          boxShadow: "0 0 0 2px var(--color-accent)",
+        }}
+      />
     </div>
   );
 }
@@ -216,23 +280,12 @@ function TimelineEvent({ event, index }: { event: WeddingEvent; index: number })
     return () => observers.forEach((o) => o.disconnect());
   }, []);
 
-  const dot = (
-    <div
-      className="w-3 h-3 rounded-full shrink-0"
-      style={{
-        background: "var(--color-accent)",
-        border: "3px solid var(--color-background)",
-        boxShadow: "0 0 0 2px var(--color-accent)",
-      }}
-    />
-  );
-
   return (
     <>
       {/* Desktop layout */}
       <div
-        className="hidden md:grid items-center py-10"
-        style={{ gridTemplateColumns: "1fr 40px 1fr", gap: "0 1rem" }}
+        className="hidden md:grid items-center py-6"
+        style={{ gridTemplateColumns: "1fr 140px 1fr" }}
       >
         <div className="flex justify-end pr-8">
           {isLeft && (
@@ -241,7 +294,9 @@ function TimelineEvent({ event, index }: { event: WeddingEvent; index: number })
             </div>
           )}
         </div>
-        <div className="flex justify-center">{dot}</div>
+        <div className="flex justify-center">
+          <TimelineNode event={event} size={110} />
+        </div>
         <div className="pl-8">
           {!isLeft && (
             <div ref={desktopRef} className="card-animate max-w-sm" data-side="right">
@@ -251,11 +306,11 @@ function TimelineEvent({ event, index }: { event: WeddingEvent; index: number })
         </div>
       </div>
 
-      {/* Mobile layout */}
-      <div className="md:hidden relative py-8 pr-4" style={{ paddingLeft: "48px" }}>
-        <div className="absolute" style={{ left: "14px", top: "2rem" }}>{dot}</div>
-        <div ref={mobileRef} className="card-animate" data-side="right">
-          <EventContent event={event} />
+      {/* Mobile layout — centered line, image centered, card below */}
+      <div className="md:hidden flex flex-col items-center py-6 px-6">
+        <TimelineNode event={event} size={90} />
+        <div ref={mobileRef} className="card-animate w-full mt-4" data-side="right">
+          <EventContent event={event} center />
         </div>
       </div>
     </>
@@ -293,16 +348,15 @@ export default function Portfolio() {
       {/* ── Timeline ─────────────────────────────────────────────────────── */}
       <div className="relative max-w-4xl mx-auto md:px-4 pb-32">
 
-        {/* Vertical center line — desktop only */}
+        {/* Vertical center line — both desktop and mobile */}
         <div
-          className="hidden md:block absolute top-0 bottom-0"
-          style={{ left: "50%", width: "1px", background: "var(--color-accent)", transform: "translateX(-50%)" }}
-        />
-
-        {/* Vertical left line — mobile only */}
-        <div
-          className="md:hidden absolute top-0 bottom-0"
-          style={{ left: "20px", width: "1px", background: "var(--color-accent)" }}
+          className="absolute top-0 bottom-0"
+          style={{
+            left: "50%",
+            width: "1px",
+            background: "var(--color-accent)",
+            transform: "translateX(-50%)",
+          }}
         />
 
         {events.map((event, i) => (
