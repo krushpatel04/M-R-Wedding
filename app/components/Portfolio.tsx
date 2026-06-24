@@ -1,51 +1,321 @@
 "use client";
 
-const HEADER = "#9f2436";
-const ACCENT = "#D4890A";
-const SECONDARY = "#C9A84C";
-const BG = "#f0eee9";
+import { useEffect, useRef } from "react";
+import Image from "next/image";
 
-/* ── Seating data ───────────────────────────────────────────────────────── */
+/* ── Event data ─────────────────────────────────────────────────────────── */
 
-const tables = Array.from({ length: 36 }, (_, i) => ({
-  number: i + 1,
-  guests: Array.from({ length: 10 }, (_, j) => `Name ${j + 1}`),
-}));
+type WeddingEvent = {
+  title: string;
+  subtitle: string;
+  image: string | null;
+  content: React.ReactNode;
+};
 
-/* ── Table card ─────────────────────────────────────────────────────────── */
-
-function TableCard({ table }: { table: (typeof tables)[0] }) {
-  return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", width: "100%", maxWidth: 320, margin: "0 auto", padding: "2rem 1rem" }}>
-
-      {/* Circle with names inside */}
-      <div style={{
-        width: 300,
-        height: 300,
-        borderRadius: "50%",
-        border: `2px solid ${ACCENT}`,
-        background: BG,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        flexShrink: 0,
-        overflow: "hidden",
-        padding: "30px",
-      }}>
-        <span style={{ color: HEADER, fontSize: "1.1rem", fontWeight: 700, marginBottom: "0.4rem" }}>
-          Table {table.number}
-        </span>
-        <ul style={{ listStyle: "none", padding: 0, margin: 0, textAlign: "center" }}>
-          {table.guests.map((name, i) => (
-            <li key={i} style={{ color: SECONDARY, fontSize: "0.7rem", lineHeight: 1.5 }}>
-              {name}
+const events: WeddingEvent[] = [
+  {
+    title: "Baraat & Swaagat",
+    subtitle: "The Groom's Procession",
+    image: "/Baraat.jpeg",
+    content: (
+      <p>
+        Rushil and his wedding brigade will dance their way to the wedding,
+        showing off their best moves. The groom&apos;s family will be welcomed
+        by Monali&apos;s mother.
+      </p>
+    ),
+  },
+  {
+    title: "Ganesh Puja",
+    subtitle: "Prayers to Lord Ganesha",
+    image: "/GaneshPuja.jpeg",
+    content: (
+      <p>
+        The wedding ceremony begins with a prayer in honor of Lord Ganesha, the
+        remover of all obstacles. Lord Ganesha is always worshiped before the
+        start of a new chapter in one&apos;s life.
+      </p>
+    ),
+  },
+  {
+    title: "Var Puja",
+    subtitle: "The Honoring of the Groom",
+    image: "/VarPuja.jpeg",
+    content: (
+      <>
+        <p className="mb-3">
+          Rushil is welcomed to the mandap by Monali&apos;s parents.
+        </p>
+        <p className="mb-3">
+          Monali&apos;s bridesmaids will try to steal Rushil&apos;s shoes once
+          he is seated in the mandap. His shoes will be held as ransom, and
+          Rushil will have to dig deep in his pockets to get them back!
+        </p>
+        <p style={{ color: "var(--color-accent)", fontStyle: "italic" }}>
+          Paise de do, Joote le lo!
+        </p>
+      </>
+    ),
+  },
+  {
+    title: "Kanya Aagman",
+    subtitle: "The Bride's Entry",
+    image: "/Kanya.jpeg",
+    content: (
+      <p>Monali walks down the aisle to the mandap, where her forever awaits.</p>
+    ),
+  },
+  {
+    title: "Kanyadaan & Hast Melap",
+    subtitle: "Union of the Couple",
+    image: "/Kanyadaan.jpeg",
+    content: (
+      <p>
+        The bride represents a form of the goddess Laxmi, and the groom that of
+        Lord Narayana. Monali&apos;s parents are assisting in the union of the
+        two &apos;Gods&apos; by placing their daughter&apos;s hand into
+        Rushil&apos;s, while everyone bears witness. Rushil&apos;s scarf is
+        then tied to Monali&apos;s veil signifying the forever union of their
+        souls.
+      </p>
+    ),
+  },
+  {
+    title: "Agni Puja & Mangal Pheras",
+    subtitle: "Circling the Sacred Fire",
+    image: "/AgniPuja.jpeg",
+    content: (
+      <p>
+        Monali and Rushil walk around the fire (agni) four times, symbolizing
+        the core aspirations of married life — Dharma (Duty), Artha
+        (Prosperity), Kama (Family) and Moksha (Salvation). As they are making
+        their last round around the fire, Monali and Rushil rush towards their
+        seats. It is said that the first to sit down will be the ruler of the
+        household.
+      </p>
+    ),
+  },
+  {
+    title: "Mangalsutra & Sindoor",
+    subtitle: "Symbols of Marriage",
+    image: "/Sindoor.jpeg",
+    content: (
+      <>
+        <p className="mb-3">
+          Rushil puts a mangalsutra (a sacred necklace) around Monali&apos;s
+          neck, and sindoor (red vermillion powder) on her hair parting.
+        </p>
+        <p>
+          They exchange rings which are a symbol of their love, everlasting
+          commitment, and respect towards each other.
+        </p>
+      </>
+    ),
+  },
+  {
+    title: "Kansar",
+    subtitle: "The Couple's First Meal Together",
+    image: "/Kansar.jpeg",
+    content: (
+      <p>
+        Monali and Rushil feed each other sweets, symbolizing they will share
+        everything they have in life.
+      </p>
+    ),
+  },
+  {
+    title: "Akhand Saubhagyavati",
+    subtitle: "Blessings from Married Women",
+    image: "/AkhandSaubhagyavati.jpeg",
+    content: (
+      <p>
+        Married women from Monali&apos;s family chant good wishes to her and
+        bless her with a married life filled with happiness and love.
+      </p>
+    ),
+  },
+  {
+    title: "Saptapadi",
+    subtitle: "The Seven Vows of Marital Bliss",
+    image: null,
+    content: (
+      <>
+        <p className="mb-4">
+          Monali and Rushil take seven sacred steps and recite the following
+          vows to one another:
+        </p>
+        <ol className="space-y-2">
+          {[
+            "We will share the responsibilities of married life.",
+            "We will fill our hearts with strength and courage to accomplish all the needs of our life.",
+            "We will prosper and share our worldly goods and work for the prosperity of our family.",
+            "We will cherish each other in sickness and in health, in happiness and in sorrow.",
+            "We will raise a strong and virtuous family.",
+            "We will fill our hearts with great joy, peace, happiness, and spiritual values.",
+            "We will remain lifelong partners in matrimony.",
+          ].map((vow, i) => (
+            <li key={i} className="flex gap-3 text-sm leading-relaxed">
+              <span style={{ color: "var(--color-accent)", fontWeight: 600 }} className="shrink-0">
+                {i + 1}.
+              </span>
+              {vow}
             </li>
           ))}
-        </ul>
+        </ol>
+      </>
+    ),
+  },
+  {
+    title: "Aashirvaad & Vidai",
+    subtitle: "Blessings to the Couple & the Bride's Farewell",
+    image: "/Vidai.jpeg",
+    content: (
+      <p>
+        The Priest declares Rushil and Monali as husband and wife. He asks
+        family and friends to join him in showering the couple with blessings
+        and good wishes. During the final ritual of the ceremony,
+        Monali&apos;s family showers her with well wishes in a farewell filled
+        with joy.
+      </p>
+    ),
+  },
+];
+
+/* ── Event card content ─────────────────────────────────────────────────── */
+
+function EventContent({ event, center = false }: { event: WeddingEvent; center?: boolean }) {
+  return (
+    <div style={{ textAlign: center ? "center" : "inherit" }}>
+      <p
+        className="text-xs tracking-widest uppercase mb-2"
+        style={{ color: "var(--color-accent)", fontFamily: "var(--font-body)" }}
+      >
+        {event.subtitle}
+      </p>
+      <h2
+        className="text-2xl sm:text-3xl font-bold mb-3 leading-tight"
+        style={{ color: "var(--color-header)" }}
+      >
+        {event.title}
+      </h2>
+      <div className="text-sm leading-relaxed" style={{ color: "var(--color-secondary)" }}>
+        {event.content}
+      </div>
+    </div>
+  );
+}
+
+/* ── Timeline node (image or dot) ───────────────────────────────────────── */
+
+function TimelineNode({ event, size }: { event: WeddingEvent; size: number }) {
+  if (event.image) {
+    return (
+      <div
+        style={{
+          position: "relative",
+          zIndex: 1,
+          background: "var(--color-background)",
+          padding: "10px",
+          flexShrink: 0,
+        }}
+      >
+        <Image
+          src={event.image}
+          alt={event.title}
+          width={size}
+          height={size}
+          style={{ objectFit: "contain", display: "block" }}
+          unoptimized
+        />
+      </div>
+    );
+  }
+  return (
+    <div
+      style={{
+        position: "relative",
+        zIndex: 1,
+        background: "var(--color-background)",
+        padding: "10px",
+        flexShrink: 0,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        width: size + 20,
+        height: size + 20,
+      }}
+    >
+      <div
+        style={{
+          width: 12,
+          height: 12,
+          borderRadius: "50%",
+          background: "var(--color-accent)",
+          boxShadow: "0 0 0 2px var(--color-accent)",
+        }}
+      />
+    </div>
+  );
+}
+
+/* ── Timeline event row ─────────────────────────────────────────────────── */
+
+function TimelineEvent({ event, index }: { event: WeddingEvent; index: number }) {
+  const desktopRef = useRef<HTMLDivElement>(null);
+  const mobileRef = useRef<HTMLDivElement>(null);
+  const isLeft = index % 2 === 0;
+
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+    [desktopRef, mobileRef].forEach((ref) => {
+      const el = ref.current;
+      if (!el) return;
+      const obs = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) { el.classList.add("is-visible"); obs.disconnect(); }
+        },
+        { threshold: 0.1 }
+      );
+      obs.observe(el);
+      observers.push(obs);
+    });
+    return () => observers.forEach((o) => o.disconnect());
+  }, []);
+
+  return (
+    <>
+      {/* Desktop layout */}
+      <div
+        className="hidden md:grid items-center py-6"
+        style={{ gridTemplateColumns: "1fr 140px 1fr" }}
+      >
+        <div className="flex justify-end pr-8">
+          {isLeft && (
+            <div ref={desktopRef} className="card-animate max-w-sm text-right" data-side="left">
+              <EventContent event={event} />
+            </div>
+          )}
+        </div>
+        <div className="flex justify-center">
+          <TimelineNode event={event} size={110} />
+        </div>
+        <div className="pl-8">
+          {!isLeft && (
+            <div ref={desktopRef} className="card-animate max-w-sm" data-side="right">
+              <EventContent event={event} />
+            </div>
+          )}
+        </div>
       </div>
 
-    </div>
+      {/* Mobile layout — centered line, image centered, card below */}
+      <div className="md:hidden flex flex-col items-center py-6 px-6">
+        <TimelineNode event={event} size={90} />
+        <div ref={mobileRef} className="card-animate w-full mt-4" data-side="right">
+          <EventContent event={event} center />
+        </div>
+      </div>
+    </>
   );
 }
 
@@ -53,36 +323,46 @@ function TableCard({ table }: { table: (typeof tables)[0] }) {
 
 export default function Portfolio() {
   return (
-    <div style={{ background: BG, minHeight: "100vh" }}>
+    <div style={{ background: "var(--color-background)" }}>
 
-      {/* Hero */}
-      <div style={{ textAlign: "center", padding: "4rem 1.5rem 2rem" }}>
-        <h1 style={{ color: HEADER, fontSize: "clamp(1.8rem, 6vw, 3.5rem)", fontWeight: 700, lineHeight: 1.2, marginBottom: "0.5rem" }}>
-          Welcome to the Reception of
+      {/* ── Hero ─────────────────────────────────────────────────────────── */}
+      <div className="py-24 md:min-h-screen flex flex-col items-center justify-center px-6 text-center">
+        <h1
+          className="text-5xl sm:text-7xl font-bold leading-tight mb-4"
+          style={{ color: "var(--color-header)" }}
+        >
+          Welcome to the Wedding of
         </h1>
-        <h2 style={{ color: HEADER, fontSize: "clamp(1.5rem, 5vw, 3rem)", fontWeight: 700, lineHeight: 1.2, marginBottom: "1.5rem" }}>
-          Mona and Rushil
+        <h2
+          className="text-4xl sm:text-6xl font-bold leading-tight mb-6"
+          style={{ color: "var(--color-header)" }}
+        >
+          Rushil and Monali
         </h2>
-        <p style={{ color: ACCENT, fontSize: "0.75rem", letterSpacing: "0.15em", textTransform: "uppercase" }}>
+        <p
+          className="text-sm tracking-widest uppercase"
+          style={{ color: "var(--color-accent)" }}
+        >
           June 27th, 2026
         </p>
       </div>
 
-      {/* Divider */}
-      <div style={{ borderTop: `1px solid ${ACCENT}`, margin: "0 1.5rem" }} />
+      {/* ── Timeline ─────────────────────────────────────────────────────── */}
+      <div className="relative max-w-4xl mx-auto md:px-4 pb-32">
 
-      {/* Seating label */}
-      <p style={{ color: ACCENT, fontSize: "0.75rem", letterSpacing: "0.15em", textTransform: "uppercase", textAlign: "center", margin: "2rem 0 0" }}>
-        Seating Chart
-      </p>
+        {/* Vertical center line — both desktop and mobile */}
+        <div
+          className="absolute top-0 bottom-0"
+          style={{
+            left: "50%",
+            width: "1px",
+            background: "var(--color-accent)",
+            transform: "translateX(-50%)",
+          }}
+        />
 
-      {/* Tables */}
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingBottom: "5rem" }}>
-        {tables.map((table, i) => (
-          <div key={table.number} style={{ width: "100%" }}>
-            {i > 0 && <div style={{ borderTop: `1px solid rgba(212,137,10,0.2)`, margin: "0 2rem" }} />}
-            <TableCard table={table} />
-          </div>
+        {events.map((event, i) => (
+          <TimelineEvent key={i} event={event} index={i} />
         ))}
       </div>
 
