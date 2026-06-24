@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Image from "next/image";
 
 /* ── Event data ─────────────────────────────────────────────────────────── */
 
@@ -219,13 +218,12 @@ function TimelineNode({ event, size }: { event: WeddingEvent; size: number }) {
           flexShrink: 0,
         }}
       >
-        <Image
-          src={event.image}
+        <img
+          src={`/M-R-Wedding${event.image}`}
           alt={event.title}
           width={size}
           height={size}
           style={{ objectFit: "contain", display: "block" }}
-          unoptimized
         />
       </div>
     );
