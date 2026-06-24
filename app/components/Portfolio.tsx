@@ -2,54 +2,7 @@
 
 const HEADER = "#9f2436";
 const ACCENT = "#D4890A";
-const SECONDARY = "#C9A84C";
 const BG = "#f0eee9";
-
-/* ── Seating data ───────────────────────────────────────────────────────── */
-
-const tables = Array.from({ length: 36 }, (_, i) => ({
-  number: i + 1,
-  guests: Array.from({ length: 10 }, (_, j) => `Name ${j + 1}`),
-}));
-
-/* ── Table card ─────────────────────────────────────────────────────────── */
-
-function TableCard({ table }: { table: (typeof tables)[0] }) {
-  return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", width: "100%", maxWidth: 320, margin: "0 auto", padding: "2rem 1rem" }}>
-
-      {/* Circle with names inside */}
-      <div style={{
-        width: 300,
-        height: 300,
-        borderRadius: "50%",
-        border: `2px solid ${ACCENT}`,
-        background: BG,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        flexShrink: 0,
-        overflow: "hidden",
-        padding: "30px",
-      }}>
-        <span style={{ color: HEADER, fontSize: "1.1rem", fontWeight: 700, marginBottom: "0.4rem" }}>
-          Table {table.number}
-        </span>
-        <ul style={{ listStyle: "none", padding: 0, margin: 0, textAlign: "center" }}>
-          {table.guests.map((name, i) => (
-            <li key={i} style={{ color: SECONDARY, fontSize: "0.7rem", lineHeight: 1.5 }}>
-              {name}
-            </li>
-          ))}
-        </ul>
-      </div>
-
-    </div>
-  );
-}
-
-/* ── Main page ──────────────────────────────────────────────────────────── */
 
 export default function Portfolio() {
   return (
@@ -71,20 +24,7 @@ export default function Portfolio() {
       {/* Divider */}
       <div style={{ borderTop: `1px solid ${ACCENT}`, margin: "0 1.5rem" }} />
 
-      {/* Seating label */}
-      <p style={{ color: ACCENT, fontSize: "0.75rem", letterSpacing: "0.15em", textTransform: "uppercase", textAlign: "center", margin: "2rem 0 0" }}>
-        Seating Chart
-      </p>
-
-      {/* Tables */}
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingBottom: "5rem" }}>
-        {tables.map((table, i) => (
-          <div key={table.number} style={{ width: "100%" }}>
-            {i > 0 && <div style={{ borderTop: `1px solid rgba(212,137,10,0.2)`, margin: "0 2rem" }} />}
-            <TableCard table={table} />
-          </div>
-        ))}
-      </div>
+      {/* Seating chart PDF goes here */}
 
     </div>
   );
