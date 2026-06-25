@@ -283,11 +283,13 @@ function TimelineEvent({ event, index }: { event: WeddingEvent; index: number })
         </div>
       </div>
 
-      {/* Mobile layout */}
-      <div className="md:hidden flex flex-col items-center py-6 px-6">
-        <TimelineDot />
-        <div ref={mobileRef} className="card-animate w-full mt-4" data-side="right">
-          <EventContent event={event} center />
+      {/* Mobile layout — dot on left, text to the right */}
+      <div className="md:hidden flex items-start py-6" style={{ paddingLeft: "20px" }}>
+        <div className="flex flex-col items-center shrink-0" style={{ marginTop: "6px" }}>
+          <TimelineDot />
+        </div>
+        <div ref={mobileRef} className="card-animate ml-5 flex-1" data-side="right">
+          <EventContent event={event} />
         </div>
       </div>
     </>
@@ -325,15 +327,16 @@ export default function Portfolio() {
       {/* ── Timeline ─────────────────────────────────────────────────────── */}
       <div className="relative max-w-4xl mx-auto md:px-4 pb-32">
 
-        {/* Vertical center line — both desktop and mobile */}
+        {/* Vertical center line — desktop */}
         <div
-          className="absolute top-0 bottom-0"
-          style={{
-            left: "50%",
-            width: "1px",
-            background: "var(--color-accent)",
-            transform: "translateX(-50%)",
-          }}
+          className="hidden md:block absolute top-0 bottom-0"
+          style={{ left: "50%", width: "1px", background: "var(--color-accent)", transform: "translateX(-50%)" }}
+        />
+
+        {/* Vertical left line — mobile */}
+        <div
+          className="md:hidden absolute top-0 bottom-0"
+          style={{ left: "30px", width: "1px", background: "var(--color-accent)" }}
         />
 
         {events.map((event, i) => (
