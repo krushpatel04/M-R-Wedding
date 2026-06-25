@@ -314,7 +314,7 @@ export default function Portfolio() {
           className="text-4xl sm:text-6xl font-bold leading-tight mb-6"
           style={{ color: "var(--color-header)" }}
         >
-          Rushil and Monali
+          Monali and Rushil
         </h2>
         <p
           className="text-sm tracking-widest uppercase"
