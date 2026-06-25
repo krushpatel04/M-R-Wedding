@@ -336,7 +336,7 @@ export default function Portfolio() {
         {/* Vertical left line — mobile */}
         <div
           className="md:hidden absolute top-0 bottom-0"
-          style={{ left: "30px", width: "1px", background: "var(--color-accent)" }}
+          style={{ left: "36px", width: "1px", background: "var(--color-accent)" }}
         />
 
         {events.map((event, i) => (
