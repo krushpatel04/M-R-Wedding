@@ -204,30 +204,9 @@ function EventContent({ event, center = false }: { event: WeddingEvent; center?:
   );
 }
 
-/* ── Timeline node (image or dot) ───────────────────────────────────────── */
+/* ── Timeline dot ───────────────────────────────────────────────────────── */
 
-function TimelineNode({ event, size }: { event: WeddingEvent; size: number }) {
-  if (event.image) {
-    return (
-      <div
-        style={{
-          position: "relative",
-          zIndex: 1,
-          background: "var(--color-background)",
-          padding: "10px",
-          flexShrink: 0,
-        }}
-      >
-        <img
-          src={`/M-R-Wedding${event.image}`}
-          alt={event.title}
-          width={size}
-          height={size}
-          style={{ objectFit: "contain", display: "block" }}
-        />
-      </div>
-    );
-  }
+function TimelineDot() {
   return (
     <div
       style={{
@@ -239,8 +218,6 @@ function TimelineNode({ event, size }: { event: WeddingEvent; size: number }) {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        width: size + 20,
-        height: size + 20,
       }}
     >
       <div
@@ -284,8 +261,8 @@ function TimelineEvent({ event, index }: { event: WeddingEvent; index: number })
     <>
       {/* Desktop layout */}
       <div
-        className="hidden md:grid items-center py-6"
-        style={{ gridTemplateColumns: "1fr 140px 1fr" }}
+        className="hidden md:grid items-center py-10"
+        style={{ gridTemplateColumns: "1fr 40px 1fr", gap: "0 1rem" }}
       >
         <div className="flex justify-end pr-8">
           {isLeft && (
@@ -295,7 +272,7 @@ function TimelineEvent({ event, index }: { event: WeddingEvent; index: number })
           )}
         </div>
         <div className="flex justify-center">
-          <TimelineNode event={event} size={110} />
+          <TimelineDot />
         </div>
         <div className="pl-8">
           {!isLeft && (
@@ -306,9 +283,9 @@ function TimelineEvent({ event, index }: { event: WeddingEvent; index: number })
         </div>
       </div>
 
-      {/* Mobile layout — centered line, image centered, card below */}
+      {/* Mobile layout */}
       <div className="md:hidden flex flex-col items-center py-6 px-6">
-        <TimelineNode event={event} size={90} />
+        <TimelineDot />
         <div ref={mobileRef} className="card-animate w-full mt-4" data-side="right">
           <EventContent event={event} center />
         </div>
